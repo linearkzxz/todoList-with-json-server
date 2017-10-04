@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableHighlight
 } from 'react-native';
+import PropTypes from 'prop-types'
 import { CheckBox } from 'native-base';
 
 const styles = StyleSheet.create({
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0, 0, 0, 0.054)',
+    borderBottomColor: 'rgba(0, 0, 0, 0.05)',
   },
   checkBoxView: {
     width: 50
@@ -45,8 +46,22 @@ const TodoListItem = (props) => {
         <Text>{text}</Text>
       </View>
     </TouchableHighlight>
-  );
-};
+  )
+}
+
+TodoListItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  text: PropTypes.string,
+  isComplete: PropTypes.bool,
+  handleToggle: PropTypes.func.isRequired,
+  handleLongPress: PropTypes.func.isRequired,
+}
+
+TodoListItem.defaultProps = {
+  text: '',
+  isComplete: false,
+}
+
 
 //make this component available to the app
 export default TodoListItem;
